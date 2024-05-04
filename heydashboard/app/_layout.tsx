@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
+import { Link } from 'expo-router'
 
 export default function Layout() {
   useEffect(() => {
@@ -8,7 +9,11 @@ export default function Layout() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Welcome to the app!</Text>
+      <Text>Welcome to the app!!!!</Text>
+      <Link  href = '/PerfilPro'>
+        <Text>pagina navi perfil pro</Text>
+        </Link>
+        
     </View>
   );
 }
