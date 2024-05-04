@@ -6,10 +6,6 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>This is Encuesta.</Text>
-      <Button
-        title="Go to Encuesta Screen"
-        onPress={() => navigation.navigate('Encuesta')}
-      />
       <StatusBar style="auto" />
     </View>
   );
