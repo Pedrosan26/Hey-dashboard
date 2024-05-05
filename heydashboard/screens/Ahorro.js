@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
   Pressable,
+  Modal,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
@@ -15,6 +16,7 @@ import React from "react";
 import BezierLineChart from "../components/BezierLineChart";
 import PieChartTuned from "../components/PieChartTuned";
 import BarChartTuned from "../components/BarChart";
+import { useState } from "react";
 
 export default function InversionScreen({ route }) {
   const { definedProfile } = route.params;
@@ -35,6 +37,18 @@ export default function InversionScreen({ route }) {
   const [months, setMonths] = React.useState([]);
   const [values, setValues] = React.useState([]);
   const [result, setResult] = React.useState([]);
+  const [sumarry, setSummarry] = useState(" ");
+  const [modal, setModal] = useState(false);
+
+  const openModal = () => {
+    console.log("Abriendo Modal");
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    console.log("Cerrando Modal");
+    setModal(false);
+  };
 
   const fetchInversionData = async () => {
     const response = await fetch(
@@ -46,8 +60,19 @@ export default function InversionScreen({ route }) {
     const response2 = await fetch(
       "http://10.22.203.32:8000/api/EgresosUsuario/"
     );
+
     const data2 = await response2.json();
     const colors = ["#1e3c72", "#2a9d8f", "#e9c46a", "#f4a261", "#e76f51"];
+
+    const sumarryResponse = await fetch(
+      "http://10.22.203.32:8000/api/ResumenEgresos/"
+    );
+
+    const sumarryData = await sumarryResponse.json();
+    const lastElement = sumarryData[sumarryData.length - 1];
+
+    setSummarry(lastElement.resumen);
+    console.log(sumarry);
 
     const result = data2.slice(0, 5).map((item, index) => ({
       name: item.gasto,
@@ -137,11 +162,33 @@ export default function InversionScreen({ route }) {
             detalle, lee el análisis de tu información supercargado con
             inteligencia artificial.
           </Text>
-          <Pressable style={styles.HomeButton}>
+          <Pressable style={styles.HomeButton} onTouchStart={openModal}>
             <Text style={styles.buttonText}>Generar reporte inteligente</Text>
           </Pressable>
         </View>
       </ScrollView>
+      {modal && (
+        <Modal
+          animationType="slide"
+          transparent={true}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.modal}>
+          <Pressable onPress={closeModal}>
+                <View style={styles.exit}>
+                  <Text style={{color:"red",fontSize:32}}>X </Text>
+                </View>
+              </Pressable>
+            <View style={styles.modalContent}>
+              
+              <Text style={{fontSize:16,marginTop:20,fontFamily:"Georgia",margin:"auto"}}>{sumarry}</Text>
+            </View>
+          </View>
+        </Modal>
+      )}
     </SafeAreaView>
   );
 }
@@ -229,5 +276,33 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
+  },
+  modal: {
+    position: "relative",
+    top: 0,
+    left: 0,
+    width: 450,
+    height: 900,
+    backgroundColor: "rgba(0,0,0,0.8)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 100,
+  },
+
+  modalContent: {
+    
+    display:"flex",
+    width:380,
+    height:250,
+    backgroundColor:"#b5b5b5",
+    textAlign:"justify",
+    marginEnd:50,
+    marginBottom:200
+  },
+  exit: {
+    height:240,
+    width:300,
+    alignItems:"flex-end",
   },
 });
