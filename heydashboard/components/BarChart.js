@@ -1,4 +1,4 @@
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
 import { BarChart } from "react-native-chart-kit";
 
 export default function BarChartTuned({chartConfig}) {
@@ -23,7 +23,7 @@ export default function BarChartTuned({chartConfig}) {
 
   return (
     <View>
-      <Text>Bar Chart</Text>
+      <Text style = {styles.text}>Gráfico de barras</Text>
       <BarChart
         width={width}
         height={height}
@@ -35,3 +35,31 @@ export default function BarChartTuned({chartConfig}) {
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
+
+  logo: {
+    width: 70,
+    height: 30,
+    resizeMode: "contain",
+  },
+
+  text: {
+    color: "white",
+    fontSize: 28,
+    fontWeight: "200",
+    marginBottom: 10
+  },
+
+  scrolltext: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "400",
+  },
+});

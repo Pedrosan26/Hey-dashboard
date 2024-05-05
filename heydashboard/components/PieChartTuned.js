@@ -1,4 +1,4 @@
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
 import { PieChart } from "react-native-chart-kit";
 
 export default function PieChartTuned({chartConfig}) {
@@ -44,7 +44,7 @@ export default function PieChartTuned({chartConfig}) {
   ];
   return (
     <View>
-      <Text>Progress Chart</Text>
+      <Text style = {styles.text}>Gráfico de progreso</Text>
       <PieChart
         data={pieChartData}
         height={height}
@@ -56,5 +56,34 @@ export default function PieChartTuned({chartConfig}) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
+
+  logo: {
+    width: 70,
+    height: 30,
+    resizeMode: "contain",
+  },
+
+  text: {
+    color: "white",
+    fontSize: 28,
+    fontWeight: "200",
+    marginBottom: 15
+  },
+
+  scrolltext: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "400",
+  },
+});
 
 

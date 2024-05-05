@@ -1,4 +1,4 @@
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
 import {
   LineChart
 } from "react-native-chart-kit";
@@ -6,16 +6,13 @@ import {
 export default function BezierLineChart({chartConfig}) {
   return (
     <View>
-      <Text>Bezier Line Chart</Text>
+    <Text style = {styles.text}>Gráfico lineal</Text>
       <LineChart
         data={{
-          labels: ["January", "February", "March", "April", "May", "June"],
+          labels: ["January", "February", "March"],
           datasets: [
             {
               data: [
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
@@ -24,7 +21,7 @@ export default function BezierLineChart({chartConfig}) {
           ],
         }}
         width={Dimensions.get("window").width - 20} // from react-native
-        height={220}
+        height={260}
         yAxisLabel="$"
         yAxisSuffix="k"
         yAxisInterval={1} // optional, defaults to 1
@@ -39,3 +36,32 @@ export default function BezierLineChart({chartConfig}) {
   );
 }
 
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "black",
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+      flexDirection: "column",
+    },
+  
+    logo: {
+      width: 70,
+      height: 30,
+      resizeMode: "contain",
+    },
+  
+    text: {
+      color: "white",
+      fontSize: 28,
+      fontWeight: "200",
+      marginBottom: 10
+    },
+  
+    scrolltext: {
+      color: "white",
+      fontSize: 18,
+      fontWeight: "400",
+    },
+  });

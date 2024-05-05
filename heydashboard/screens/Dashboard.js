@@ -17,6 +17,7 @@ import {
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -41,10 +42,48 @@ export default function DashboardScreen({ navigation }) {
     },
   };
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Ingresos y gastos" component={IngresosScreen} />
-      <Tab.Screen name="Ahorro" component={AhorroScreen} />
-      <Tab.Screen name="Inversiones" component={InversionScreen} />
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "white",
+        tabBarStyle: {
+          backgroundColor: "gray",
+          height: 110,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          padding: 5,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Ingresos y gastos"
+        component={IngresosScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="wallet" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Ahorro"
+        component={AhorroScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="cash" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Inversiones"
+        component={InversionScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="trending-up" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
