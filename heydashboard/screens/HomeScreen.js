@@ -90,7 +90,9 @@ export default function HomeScreen({ navigation }) {
 
         <Pressable
           style={styles.HomeButton}
-          onPress={() => navigation.navigate("Dashboard")}
+          onPress={() => navigation.navigate("Dashboard", {
+              definedProfile: "Inversión"
+            })}
         >
           <Text style = {{fontSize: 20}}>probar dash</Text>
         </Pressable>

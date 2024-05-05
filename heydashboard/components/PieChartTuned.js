@@ -1,9 +1,11 @@
 import { Dimensions, View, Text, StyleSheet } from "react-native";
 import { PieChart } from "react-native-chart-kit";
 
-export default function PieChartTuned({chartConfig}) {
+export default function PieChartTuned({chartConfig, pieData}) {
   const width = 350;
   const height = 220;
+
+  if (pieData === undefined ||  pieData.length === 0) return <Text>Loading..</Text>
 
   const pieChartData = [
     {
@@ -44,9 +46,9 @@ export default function PieChartTuned({chartConfig}) {
   ];
   return (
     <View>
-      <Text style = {styles.text}>Gráfico de progreso</Text>
+      <Text style = {styles.text}>Gráfico PIE</Text>
       <PieChart
-        data={pieChartData}
+        data={pieData ? pieData : pieChartData}
         height={height}
         width={width}
         chartConfig={chartConfig}

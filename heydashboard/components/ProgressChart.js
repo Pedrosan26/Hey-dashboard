@@ -1,4 +1,4 @@
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
 import {
   ProgressChart
 } from "react-native-chart-kit";
@@ -8,7 +8,7 @@ export default function ProgressChartTuned({chartConfig}) {
     const height = 220
   return (
     <View>
-      <Text>Progress Chart</Text>
+      <Text style = {styles.text}>Gráfico de progreso</Text>
       <ProgressChart
         data={[0.4, 0.6, 0.8]}
         width={width}
@@ -19,3 +19,34 @@ export default function ProgressChartTuned({chartConfig}) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
+
+  logo: {
+    width: 70,
+    height: 30,
+    resizeMode: "contain",
+  },
+
+  text: {
+    color: "white",
+    fontSize: 28,
+    fontWeight: "200",
+    marginBottom: 15
+  },
+
+  scrolltext: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "400",
+  },
+});
+
+

@@ -3,27 +3,24 @@ import {
   LineChart
 } from "react-native-chart-kit";
 
-export default function BezierLineChart({chartConfig}) {
+export default function BezierLineChart({chartConfig, labels, data}) {
+
+  if (labels === undefined || data === undefined || labels.length === 0 || data.length === 0) return <Text>Loading..</Text>
+
   return (
     <View>
     <Text style = {styles.text}>Gráfico lineal</Text>
       <LineChart
         data={{
-          labels: ["January", "February", "March"],
+          labels: labels,
           datasets: [
             {
-              data: [
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-              ],
+              data: data,
             },
           ],
         }}
         width={Dimensions.get("window").width - 20} // from react-native
         height={260}
-        yAxisLabel="$"
-        yAxisSuffix="k"
         yAxisInterval={1} // optional, defaults to 1
         chartConfig={chartConfig}
         bezier
