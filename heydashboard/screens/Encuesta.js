@@ -1,21 +1,215 @@
-// HomeScreen.js
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+// Encuesta.js
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Pressable,
+  Image,
+  SafeAreaView,
+} from "react-native";
+import { StatusBar } from "expo-status-bar";
+import RNPickerSelect from "react-native-picker-select";
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>This is Encuesta.</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.imagecontainer}>
+        <Image
+          source={require("../assets/logo.png")} // Asegúrate de que la ruta sea correcta
+          style={[styles.logo, { tintColor: "white" }]} // Invertir el color de la imagen
+        />
+        <Text
+          style={{
+            color: "white",
+            margin: 3,
+            fontStyle: "italic",
+            fontSize: 24,
+            paddingBottom: 5,
+          }}
+        >
+          banco
+        </Text>
+      </View>
+      <View style={styles.appcontainer}>
+        <Text
+          style={{
+            color: "white",
+            display: "flex",
+            fontSize: 32,
+            width: "65%",
+            fontWeight: "200",
+          }}
+        >
+          Comencemos con estas simples preguntas para conocerte más
+        </Text>
+
+        <View
+          style={{
+            display: "flex",
+            alignItems: "start",
+            marginTop: 30,
+            gap: 20,
+            justifyContent: "start",
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 18, width: "100%" }}>
+          ¿Qué te interesa más sobre tu cuenta hey?
+          </Text>
+          <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            placeholder={{
+              label: "Seleccione una opción",
+              value: "Seleccione una opción",
+            }}
+            items={[
+              { label: "Nada en específico", value: "Básico" },
+              { label: "Me interesa visualizar mis gastos", value: "Límite" },
+              {
+                label: "Me interesa la parte de la inversión",
+                value: "Inversión",
+              },
+            ]}
+            style={pickerSelectStyles}
+          />
+
+          <Text style={{ color: "white", fontSize: 18, width: "100%" }}>
+          ¿Cuál es tu fuente de ingresos principal?
+          </Text>
+          <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            placeholder={{
+              label: "Seleccione una opción",
+              value: "Seleccione una opción",
+            }}
+            items={[
+              { label: "Nada en específico", value: "Básico" },
+              { label: "Me interesa visualizar mis gastos", value: "Límite" },
+              {
+                label: "Me interesa la parte de la inversión",
+                value: "Inversión",
+              },
+            ]}
+            style={pickerSelectStyles}
+          />
+
+          <Text
+            style={{
+              color: "white",
+              fontSize: 18,
+              width: "100%",
+              textAlign: "left",
+            }}
+          >
+            ¿Cuál es tu objetivo con tu cuenta Hey?
+          </Text>
+          <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            placeholder={{
+              label: "Seleccione una opción",
+              value: "Seleccione una opción",
+            }}
+            items={[
+              { label: "Nada en específico", value: "Básico" },
+              { label: "Me interesa visualizar mis gastos", value: "Límite" },
+              {
+                label: "Me interesa la parte de la inversión",
+                value: "Inversión",
+              },
+            ]}
+            style={pickerSelectStyles}
+          />
+        </View>
+
+        <View style = {{marginTop: 40, width: "100%" , display: "flex" , justifyContent: "center"}}>
+            <Pressable style = {styles.HomeButton}>
+                <Text style = {{fontSize: 18}}>Envíar</Text>
+            </Pressable>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#000000",
+    alignItems: "start",
+  },
+
+  logo: {
+    width: 70,
+    height: 30,
+    resizeMode: "contain",
+  },
+
+  imagecontainer: {
+    display: "flex",
+    alignItems: "baseline",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    marginTop: 10,
+    marginLeft: 25,
+    gap: 4,
+  },
+
+  appcontainer: {
+    margin: 25,
+    width: "100%",
+    flex: 1,
+    alignItems: "start",
+    marginBottom: 300,
+  },
+
+  welcometext: {
+    color: "white",
+    fontSize: 28,
+  },
+
+  italictextwelcome: {
+    color: "white",
+    fontSize: 28,
+    fontStyle: "italic",
+    fontWeight: "200",
+  },
+
+  text: {
+    color: "white",
+  },
+
+  HomeButton: {
+    color: "black",
+    backgroundColor: "white",
+    borderRadius: 25,
+    width: 200,
+    height: 50,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 4,
+    backgroundColor: "white",
+    color: "black",
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: "purple",
+    borderRadius: 8,
+    color: "black",
+    paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
