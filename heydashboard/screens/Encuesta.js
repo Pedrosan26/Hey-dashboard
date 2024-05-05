@@ -10,10 +10,51 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import RNPickerSelect from "react-native-picker-select";
+import React, { useState } from "react";
+import { Dimensions } from "react-native";
+
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
+
+function calculateProfile(r1, r2, r3) {
+  const checkWeight = {
+    Básico: 2,
+    Límite: 1,
+    Inversión: 3,
+  };
+}
 
 export default function HomeScreen({ navigation }) {
+  const [pregunta1, setPregunta1] = useState(null);
+  const [pregunta2, setPregunta2] = useState(null);
+  const [pregunta3, setPregunta3] = useState(null);
+  const [result, setResult] = useState();
+
+  const checkWeight = {
+    Básico: 1,
+    Límite: 2,
+    Inversión: 3,
+  };
+
+  const handleSubmit = () => {
+    if (pregunta1 === null || pregunta2 === null || pregunta3 === null) {
+      alert("¡Hey! Falta llenar algún campo.");
+      return;
+    }
+
+    var totalWeight = 0;
+
+    totalWeight += checkWeight[pregunta1];
+    totalWeight += checkWeight[pregunta2];
+    totalWeight += checkWeight[pregunta3];
+    const finalAvg = Math.round(totalWeight / 3);
+
+    navigation.navigate('Perfil', { total: finalAvg });
+  };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { width: screenWidth, height: screenHeight }]}
+    >
       <View style={styles.imagecontainer}>
         <Image
           source={require("../assets/logo.png")} // Asegúrate de que la ruta sea correcta
@@ -54,10 +95,10 @@ export default function HomeScreen({ navigation }) {
           }}
         >
           <Text style={{ color: "white", fontSize: 18, width: "100%" }}>
-          ¿Qué te interesa más sobre tu cuenta hey?
+            ¿Qué te interesa más sobre tu cuenta hey?
           </Text>
           <RNPickerSelect
-            onValueChange={(value) => console.log(value)}
+            onValueChange={(value) => setPregunta1(value)}
             placeholder={{
               label: "Seleccione una opción",
               value: "Seleccione una opción",
@@ -74,19 +115,19 @@ export default function HomeScreen({ navigation }) {
           />
 
           <Text style={{ color: "white", fontSize: 18, width: "100%" }}>
-          ¿Cuál es tu fuente de ingresos principal?
+            ¿Cuál es tu fuente de ingresos principal?
           </Text>
           <RNPickerSelect
-            onValueChange={(value) => console.log(value)}
+            onValueChange={(value) => setPregunta2(value)}
             placeholder={{
               label: "Seleccione una opción",
               value: "Seleccione una opción",
             }}
             items={[
-              { label: "Nada en específico", value: "Básico" },
-              { label: "Me interesa visualizar mis gastos", value: "Límite" },
+              { label: "Soy asalariado o no tengo ingresos", value: "Básico" },
+              { label: "Soy empresario", value: "Límite" },
               {
-                label: "Me interesa la parte de la inversión",
+                label: "Soy inversionista",
                 value: "Inversión",
               },
             ]}
@@ -104,7 +145,7 @@ export default function HomeScreen({ navigation }) {
             ¿Cuál es tu objetivo con tu cuenta Hey?
           </Text>
           <RNPickerSelect
-            onValueChange={(value) => console.log(value)}
+            onValueChange={(value) => setPregunta3(value)}
             placeholder={{
               label: "Seleccione una opción",
               value: "Seleccione una opción",
@@ -121,10 +162,17 @@ export default function HomeScreen({ navigation }) {
           />
         </View>
 
-        <View style = {{marginTop: 40, width: "100%" , display: "flex" , justifyContent: "center"}}>
-            <Pressable style = {styles.HomeButton}>
-                <Text style = {{fontSize: 18}}>Envíar</Text>
-            </Pressable>
+        <View
+          style={{
+            marginTop: 40,
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Pressable onPress={handleSubmit} style={styles.HomeButton}>
+            <Text style={{ fontSize: 18 }}>Envíar</Text>
+          </Pressable>
         </View>
       </View>
     </SafeAreaView>
@@ -136,6 +184,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000000",
     alignItems: "start",
+    width: "100%",
+    height: "100%",
   },
 
   logo: {
