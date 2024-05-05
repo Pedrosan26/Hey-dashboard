@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-export default function HomeScreen({ navigation }) {
+export default function DashboardScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>This is Dashboard.</Text>
