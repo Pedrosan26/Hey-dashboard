@@ -87,15 +87,6 @@ export default function HomeScreen({ navigation }) {
         >
           <Text style = {{fontSize: 20}}>Iniciar</Text>
         </Pressable>
-
-        <Pressable
-          style={styles.HomeButton}
-          onPress={() => navigation.navigate("Dashboard", {
-              definedProfile: "Inversión"
-            })}
-        >
-          <Text style = {{fontSize: 20}}>probar dash</Text>
-        </Pressable>
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
