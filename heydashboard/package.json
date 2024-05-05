@@ -20,7 +20,9 @@
     "react-native-picker-select": "^9.1.3",
     "react-native-svg": "^15.2.0",
     "react-native-svg-charts": "^5.4.0",
-    "victory-native": "^40.1.1"
+    "victory-native": "^40.1.1",
+    "react-native-confetti-cannon": "^1.5.2",
+    "react-native-picker-select": "^9.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
