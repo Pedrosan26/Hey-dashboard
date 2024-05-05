@@ -75,7 +75,7 @@ class PantallaConCirculo extends React.Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => this.props.navigation.navigate("Dashboard", {
-              profile: definedProfile
+              definedProfile: definedProfile
             })}
           >
             <Text style={styles.buttonText}>Ir a Dashboard</Text>
