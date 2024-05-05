@@ -94,7 +94,7 @@ export default function HomeScreen({ navigation }) {
             justifyContent: "start",
           }}
         >
-          <Text style={{ color: "white", fontSize: 18, width: "100%" }}>
+          <Text style={{ color: "white", fontSize: 15, width: "100%" }}>
             ¿Qué te interesa más sobre tu cuenta hey?
           </Text>
           <RNPickerSelect
@@ -114,7 +114,7 @@ export default function HomeScreen({ navigation }) {
             style={pickerSelectStyles}
           />
 
-          <Text style={{ color: "white", fontSize: 18, width: "100%" }}>
+          <Text style={{ color: "white", fontSize: 15, width: "100%" }}>
             ¿Cuál es tu fuente de ingresos principal?
           </Text>
           <RNPickerSelect
@@ -137,7 +137,7 @@ export default function HomeScreen({ navigation }) {
           <Text
             style={{
               color: "white",
-              fontSize: 18,
+              fontSize: 15,
               width: "100%",
               textAlign: "left",
             }}
