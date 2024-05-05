@@ -15,10 +15,23 @@ import {
   import PieChartTuned from "../components/PieChartTuned";
   import BarChartTuned from "../components/BarChart";
   
-  export default function InversionScreen({ navigation }) {
+  export default function InversionScreen({ route }) {
+    const {definedProfile} = route.params;
+
+    const colorMapping = {
+      Básico: { gradientFrom: "#fb8c00", gradientTo: "#ffa726" },
+      Límite: { gradientFrom: "#1e3c72", gradientTo: "#2a5298" },
+      Inversión: { gradientFrom: "#ff6347", gradientTo: "#ff4500" },
+    };
+
+    console.log(colorMapping[definedProfile])
+    
+    const { gradientFrom, gradientTo } = colorMapping[definedProfile] || { gradientFrom: "#fb8c00", gradientTo: "#ffa726" }; // Default colors
+    
+
     const chartConfig = {
-      backgroundGradientFrom: "#fb8c00",
-      backgroundGradientTo: "#ffa726",
+      backgroundGradientFrom: gradientFrom,
+      backgroundGradientTo: gradientTo,
       decimalPlaces: 2, // optional, defaults to 2dp
       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
       labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,

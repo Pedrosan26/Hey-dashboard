@@ -25,22 +25,9 @@ import AhorroScreen from "./Ahorro";
 import IngresosScreen from "./IngresosYGastos";
 import InversionScreen from "./Inversion";
 
-export default function DashboardScreen({ navigation }) {
-  const chartConfig = {
-    backgroundGradientFrom: "#fb8c00",
-    backgroundGradientTo: "#ffa726",
-    decimalPlaces: 2, // optional, defaults to 2dp
-    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    style: {
-      borderRadius: 16,
-    },
-    propsForDots: {
-      r: "6",
-      strokeWidth: "2",
-      stroke: "#ffa726",
-    },
-  };
+export default function DashboardScreen({ route }) {
+  const { definedProfile } = route.params;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -58,32 +45,35 @@ export default function DashboardScreen({ navigation }) {
       }}
     >
       <Tab.Screen
-        name="Ingresos y gastos"
-        component={IngresosScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="wallet" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Ahorro"
-        component={AhorroScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="cash" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Inversiones"
-        component={InversionScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="trending-up" color={color} size={size} />
-          ),
-        }}
-      />
+    name="Ingresos y gastos"
+    component={IngresosScreen}
+    initialParams={{ definedProfile: definedProfile }}
+    options={{
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="wallet" color={color} size={size} />
+      ),
+    }}
+  />
+  <Tab.Screen
+    name="Ahorro"
+    component={AhorroScreen}
+    initialParams={{ definedProfile: definedProfile }}
+    options={{
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="cash" color={color} size={size} />
+      ),
+    }}
+  />
+  <Tab.Screen
+    name="Inversiones"
+    component={InversionScreen}
+    initialParams={{ definedProfile: definedProfile }}
+    options={{
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="trending-up" color={color} size={size} />
+      ),
+    }}
+  />
     </Tab.Navigator>
   );
 }
