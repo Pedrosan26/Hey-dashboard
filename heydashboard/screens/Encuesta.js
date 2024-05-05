@@ -152,9 +152,9 @@ export default function HomeScreen({ navigation }) {
             }}
             items={[
               { label: "Nada en específico", value: "Básico" },
-              { label: "Me interesa visualizar mis gastos", value: "Límite" },
+              { label: "Quiero un buen control de mis gastos", value: "Límite" },
               {
-                label: "Me interesa la parte de la inversión",
+                label: "Me interesa invertir a través de Hey",
                 value: "Inversión",
               },
             ]}

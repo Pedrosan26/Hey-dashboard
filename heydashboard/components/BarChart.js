@@ -2,7 +2,7 @@ import { Dimensions, View, Text, StyleSheet } from "react-native";
 import { BarChart } from "react-native-chart-kit";
 
 export default function BarChartTuned({chartConfig, labels, mydata}) {
-  const width = Dimensions.get("window").width - 25;
+  const width = Dimensions.get("window").width - 10;
   const height = 220;
 
   const data = {

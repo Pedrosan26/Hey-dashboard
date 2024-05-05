@@ -88,10 +88,10 @@ export default function InversionScreen({ route }) {
       legendFontSize: 15,
     }));
     setResult(result);
-    const values = data.map((item) =>
+    const values = data.slice(0,4).map((item) =>
       !isNaN(Number(item.cantidad)) ? Number(item.cantidad) : 0
     );
-    const dates = data.map((item) => item.fecha);
+    const dates = data.slice(0,4).map((item) => item.fecha);
 
     setValues(values);
     setDates(dates);
@@ -117,7 +117,7 @@ export default function InversionScreen({ route }) {
             Tus ingresos clasificados y desglosados
             <Text style={styles.italicText}> para ti</Text>
           </Text>
-          <Text style={styles.texttitle}>Enero - Marzo 2024</Text>
+          <Text style={styles.texttitle}>Mayo 2024</Text>
           <BezierLineChart
             labels={dates}
             data={values}
@@ -140,17 +140,20 @@ export default function InversionScreen({ route }) {
                 Monto actual: <Text>$52,000</Text>{" "}
               </Text>
               <Text style={styles.stats}>
-                Ganancia actual: <Text style={{ color: "green" }}>+2,500</Text>{" "}
+                Ingresos mensuales en promedio:{" "}
+                <Text style={{ color: "green" }}>
+                 ${Math.round(values.reduce((a, b) => a + b, 0) / values.length)} MXN
+                </Text>{" "}
               </Text>
               <Text style={styles.stats}>
-                Porcentaje aumentado:{" "}
-                <Text style={{ color: "green" }}>+6.78%</Text>{" "}
+                Porcentaje gastado:{" "}
+                <Text style={{ color: "green" }}>+11.78%</Text>{" "}
               </Text>
             </View>
           </View>
           <Text style={styles.scrolltext}>
-            Tus inversiones tuvieron moderados a buenos rendimientos. Para más
-            detalle, lee el análisis de tu información supercargado con
+            Tus ingresos tuvieron buenos altos estos meses. Para más
+            detalle, lee el análisis de tu información financiera supercargado con
             inteligencia artificial.
           </Text>
           <Pressable style={styles.HomeButton} onTouchStart={openModal} >

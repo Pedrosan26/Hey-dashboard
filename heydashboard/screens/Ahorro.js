@@ -83,7 +83,7 @@ export default function InversionScreen({ route }) {
     }));
 
     setResult(result);
-    const values = data2.map((item) => item.cantidad).slice(0, 5);
+    const values = data2.map((item) => Number(item.cantidad)).slice(0, 5);
     console.log(values);
     const months = data2.map((item) => item.gasto).slice(0, 5);
 
@@ -126,7 +126,7 @@ export default function InversionScreen({ route }) {
             Tus gastos clasificados y desglosados
             <Text style={styles.italicText}> para ti</Text>
           </Text>
-          <Text style={styles.texttitle}>Enero - Marzo 2024</Text>
+          <Text style={styles.texttitle}>Mayo 2024</Text>
           <BezierLineChart
             labels={months}
             data={values}
@@ -149,17 +149,19 @@ export default function InversionScreen({ route }) {
                 Monto actual: <Text>$52,000</Text>{" "}
               </Text>
               <Text style={styles.stats}>
-                Ganancia actual: <Text style={{ color: "green" }}>+2,500</Text>{" "}
+                Gastos totales: <Text style={{ color: "red" }}>
+                ${Math.round(values.reduce((a, b) => a + b, 0))} MXN
+                </Text>{" "}
               </Text>
               <Text style={styles.stats}>
-                Porcentaje aumentado:{" "}
-                <Text style={{ color: "green" }}>+6.78%</Text>{" "}
+                Porcentaje gastado:{" "}
+                <Text style={{ color: "red" }}>-8.78%</Text>{" "}
               </Text>
             </View>
           </View>
           <Text style={styles.scrolltext}>
-            Tus inversiones tuvieron moderados a buenos rendimientos. Para más
-            detalle, lee el análisis de tu información supercargado con
+            Tus gastos este mes fueron moderados. Para más
+            detalle, lee el análisis de tu información financiera supercargado con
             inteligencia artificial.
           </Text>
           <Pressable style={styles.HomeButton} onTouchStart={openModal}>
