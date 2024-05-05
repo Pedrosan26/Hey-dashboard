@@ -33,10 +33,10 @@ export default function DashboardScreen({ route }) {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "white",
+        tabBarInactiveTintColor: "gray",
         tabBarStyle: {
-          backgroundColor: "gray",
-          height: 110,
+          backgroundColor: "whitesmoke",
+          height: 100,
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -45,7 +45,7 @@ export default function DashboardScreen({ route }) {
       }}
     >
       <Tab.Screen
-    name="Ingresos y gastos"
+    name="Ingresos"
     component={IngresosScreen}
     initialParams={{ definedProfile: definedProfile }}
     options={{
@@ -55,7 +55,7 @@ export default function DashboardScreen({ route }) {
     }}
   />
   <Tab.Screen
-    name="Ahorro"
+    name="Gastos"
     component={AhorroScreen}
     initialParams={{ definedProfile: definedProfile }}
     options={{

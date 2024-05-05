@@ -19,7 +19,7 @@ export default function BezierLineChart({chartConfig, labels, data}) {
             },
           ],
         }}
-        width={Dimensions.get("window").width - 20} // from react-native
+        width={Dimensions.get("window").width - 10} // from react-native
         height={260}
         yAxisInterval={1} // optional, defaults to 1
         chartConfig={chartConfig}
