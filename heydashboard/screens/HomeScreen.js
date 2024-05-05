@@ -87,6 +87,20 @@ export default function HomeScreen({ navigation }) {
         >
           <Text style = {{fontSize: 20}}>Iniciar</Text>
         </Pressable>
+
+        <Pressable
+          style={styles.HomeButton}
+          onPress={() => navigation.navigate("Perfil")}
+        >
+          <Text style = {{fontSize: 20}}>ivan</Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.HomeButton}
+          onPress={() => navigation.navigate("Dashboard")}
+        >
+          <Text style = {{fontSize: 20}}>pito</Text>
+        </Pressable>
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
